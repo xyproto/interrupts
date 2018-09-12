@@ -8,6 +8,34 @@ type Registers struct {
 	a, b, c, d, es, cs, di, ds *Register
 }
 
+func (r *Registers) A() *Register {
+	return r.a
+}
+
+func (r *Registers) B() *Register {
+	return r.b
+}
+
+func (r *Registers) C() *Register {
+	return r.c
+}
+
+func (r *Registers) D() *Register {
+	return r.d
+}
+
+func (r *Registers) ES() *Register {
+	return r.es
+}
+
+func (r *Registers) CS() *Register {
+	return r.cs
+}
+
+func (r *Registers) DI() *Register {
+	return r.di
+}
+
 // Fetch the values from the RegisterMap and update the registers
 func merge(r *Registers, rm RegisterMap) {
 	for k, v := range rm {
