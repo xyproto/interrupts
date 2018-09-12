@@ -36,6 +36,10 @@ func (r *Registers) DI() *Register {
 	return r.di
 }
 
+func (r *Registers) DS() *Register {
+	return r.ds
+}
+
 // Fetch the values from the RegisterMap and update the registers
 func merge(r *Registers, rm RegisterMap) {
 	for k, v := range rm {
