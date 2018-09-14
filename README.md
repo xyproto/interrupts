@@ -1,11 +1,7 @@
 # interrupts
 
-Reimplementation of several DOS interrupts in Go + SDL2
+## WORK IN PROGRESS
 
-Import as:
+Reimplementation of several DOS interrupts in Go + SDL2.
 
-    import (
-        dos "github.com/xyproto/interrupts"
-    )
-
-# WORK IN PROGRESS
+This can be used for creating a DOS emulator in the future, or in projects like [com2go](https://github.com/xyproto/com2go) for converting DOS .com files to Go source code.
