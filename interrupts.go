@@ -4,81 +4,7 @@ import (
 	"fmt"
 )
 
-type Registers struct {
-	a, b, c, d, es, cs, di, ds *Register
-}
-
-func (r *Registers) A() *Register {
-	return r.a
-}
-
-func (r *Registers) B() *Register {
-	return r.b
-}
-
-func (r *Registers) C() *Register {
-	return r.c
-}
-
-func (r *Registers) D() *Register {
-	return r.d
-}
-
-func (r *Registers) ES() *Register {
-	return r.es
-}
-
-func (r *Registers) CS() *Register {
-	return r.cs
-}
-
-func (r *Registers) DI() *Register {
-	return r.di
-}
-
-func (r *Registers) DS() *Register {
-	return r.ds
-}
-
-// Fetch the values from the RegisterMap and update the registers
-func merge(r *Registers, rm RegisterMap) {
-	for k, v := range rm {
-		switch k {
-		case "ax":
-			r.a.Set(v)
-		case "ah":
-			r.a.SetH(uint8(v))
-		case "al":
-			r.a.SetL(uint8(v))
-		case "bx":
-			r.b.Set(v)
-		case "bh":
-			r.b.SetH(uint8(v))
-		case "bl":
-			r.b.SetL(uint8(v))
-		case "cx":
-			r.c.Set(v)
-		case "ch":
-			r.c.SetH(uint8(v))
-		case "cl":
-			r.c.SetL(uint8(v))
-		case "dx":
-			r.d.Set(v)
-		case "dh":
-			r.d.SetH(uint8(v))
-		case "dl":
-			r.d.SetL(uint8(v))
-		case "es":
-			r.es.Set(v)
-		case "cs":
-			r.cs.Set(v)
-		case "di":
-			r.di.Set(v)
-		case "ds":
-			r.ds.Set(v)
-		}
-	}
-}
+// http://www.ctyme.com/intr/int.htm
 
 // The function used for calling the reimplementations of interrupts
 func Interrupt(n byte, r *Registers, m *Memory, s *Stack) {
@@ -97,8 +23,12 @@ func Interrupt(n byte, r *Registers, m *Memory, s *Stack) {
 		fmt.Printf("CALLING INTERRUPT 0x13\n")
 	case 0x19:
 		fmt.Printf("CALLING INTERRUPT 0x19\n")
+	case 0x20:
+		fmt.Printf("CALLING INTERRUPT 0x20\n")
 	case 0x21:
 		fmt.Printf("CALLING INTERRUPT 0x21\n")
+	case 0x29:
+		fmt.Printf("CALLING INTERRUPT 0x29\n")
 	default:
 		fmt.Printf("NOT IMPLEMENTED: INTERRUPT: %#x\n", n)
 	}
