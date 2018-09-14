@@ -7,17 +7,19 @@ import (
 // http://www.ctyme.com/intr/int.htm
 
 // The function used for calling the reimplementations of interrupts
-func Interrupt(n byte, r *Registers, m *Memory, s *Stack) {
+func Interrupt(n byte, state *State) {
+	ah := state.reg.a.H()
+	al := state.reg.a.L()
 	switch n {
 	case 0x10:
-		switch r.a.H() {
+		switch ah {
 		case 0:
-			rm := SetVideoMode(r.a.L())
+			rm := SetVideoMode(al)
 			// TODO: read out values from rm and
 			//       store in the global registers
-			merge(r, rm)
+			merge(state.reg, rm)
 		default:
-			fmt.Printf("NOT IMPLEMENTED: INTERRUPT: %#x ah %#x\n", n, r.a.H())
+			fmt.Printf("NOT IMPLEMENTED: INTERRUPT: %#x ah %#x\n", n, ah)
 		}
 	case 0x13:
 		fmt.Printf("CALLING INTERRUPT 0x13\n")
